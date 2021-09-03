@@ -1,0 +1,177 @@
+﻿<Page x:Class="Projekat_WPF.Pages.AdminPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Projekat_WPF.Pages"
+      mc:Ignorable="d" Background="White"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AdminPage">
+    <Page.Resources>
+        <Storyboard x:Key="OpenMenu">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="70"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="200"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="CloseMenu">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="200"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="70"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Page.Resources>
+    <Page.Triggers>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonOpenMenu">
+            <BeginStoryboard Storyboard="{StaticResource OpenMenu}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonCloseMenu">
+            <BeginStoryboard Storyboard="{StaticResource CloseMenu}"/>
+        </EventTrigger>
+    </Page.Triggers>
+    <Grid>
+        <Grid.Background >
+            <LinearGradientBrush StartPoint="0.1,0" EndPoint="0.9,1">
+                <GradientStop Color="#FF475AE4" Offset="1" />
+                <GradientStop Color="#FFED1B1B" Offset="0" />
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Border Height="440" VerticalAlignment="Top" CornerRadius="0 0 180 0" Background="White">
+        </Border>
+        <Grid x:Name="GridMain" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="540"/>
+        <Grid Height="50" VerticalAlignment="Top" Background="#FF475AE4">
+            <Grid.Effect>
+                <DropShadowEffect BlurRadius="1" ShadowDepth="1" Color="#FFACACAC"/>
+            </Grid.Effect>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <TextBlock Text="Admin" VerticalAlignment="Center" FontSize="16"/>
+                <materialDesign:PopupBox PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" Margin="10" FontWeight="Bold">
+                    <StackPanel Width="150">
+                        <Button Click="Button_Click" Content="Logout"/>
+                        <Separator/>
+                        <Button Click="btnClose_Click" Content="Close"/>
+                    </StackPanel>
+                </materialDesign:PopupBox>
+            </StackPanel>
+        </Grid>
+        <Grid>
+            <Label Content="Geography Competition!" FontSize="18" HorizontalAlignment="Center" Margin="328,58,268,0" VerticalAlignment="Top" Width="204" RenderTransformOrigin="0.5,0.5"
+               FontWeight="Bold" Background="#FFFDFBFB" Height="30" Foreground="#DDF01414" FontFamily="Bernard MT Condensed"/>
+            <WrapPanel Orientation="Horizontal">
+                <Label Content="Review and add result:" Margin="125,95,0,0" FontSize="15" Height="29" FontWeight="Bold" Foreground="#FF4E4ECE"  Width="187"/>
+            </WrapPanel>
+            <WrapPanel Orientation="Horizontal">
+                <Label Content="Test points:" Margin="125,200,0,0" Height="29" FontWeight="Bold" Foreground="#DDF01414"  Width="135"/>
+            </WrapPanel>
+            <WrapPanel Orientation="Horizontal">
+                <Label Content="Membername:" Margin="125,130,0,0" Height="34" FontWeight="Bold" Foreground="#DDF01414"  Width="91"/>
+            </WrapPanel>
+            <WrapPanel>
+                <ComboBox Margin="220,130,0,0" SelectionChanged="ComboBoxId_SelectionChanged" Name="txtIdM" HorizontalAlignment="Center"  Height="24" Width="80"/>
+            </WrapPanel>
+            <WrapPanel Orientation="Horizontal">
+                <Label Content="Class:" Margin="125,165,0,0" Height="29" FontWeight="Bold" Foreground="#DDF01414"  Width="135"/>
+            </WrapPanel>
+            <WrapPanel>
+                <TextBox Margin="170,165,0,0"  HorizontalAlignment="Center" IsEnabled="False" Name="txtRazred" Height="24" Width="50"/>
+            </WrapPanel>
+            <WrapPanel Orientation="Horizontal">
+                <Label Content="Test points:" Margin="125,200,0,0" Height="29" FontWeight="Bold" Foreground="#DDF01414"  Width="135"/>
+            </WrapPanel>
+            <WrapPanel>
+                <TextBox Margin="200, 200,0,0" HorizontalAlignment="Center" Name="txtPoints" Height="24" Width="81"/>
+            </WrapPanel>
+            <Label Content="Date of the event:" Foreground="#FFD94448" FontWeight="Bold" HorizontalAlignment="Left"
+                       Margin="126,248,0,0" VerticalAlignment="Top" Height="24" Width="109"/>
+            <DatePicker HorizontalAlignment="Left" Name="txtBoxDate" Height="23" Margin="231,248,0,0" 
+                        VerticalAlignment="Top"  Width="119" BorderBrush="Blue"/>
+            <WrapPanel>
+                <Button Margin="127, 300,0,0" Click="Button_AddPoints" Background="#FFDD274E" Content="Add Result" HorizontalAlignment="Center" Height="29" Width="104"/>
+            </WrapPanel>
+            <WrapPanel>
+                <Button Margin="257, 300,0,0" Click="Button_Click_Archived"  Background="#FF4E4ECE" Content="Archived" HorizontalAlignment="Center" Height="29" Width="94" BorderBrush="#FF592DA8"/>
+            </WrapPanel>
+            <WrapPanel Margin="402,100,45,66.6" >
+                <DataGrid Name="DataGridResult" Foreground="White" AutoGenerateColumns="False" ScrollViewer.CanContentScroll="True" Background="#FF5178D4" Margin="0,0,0,10" Height="273" Width="351" >
+                    <DataGrid.Resources>
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="Background" Value="#FF434FCE"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="Padding" Value="10 5 5 5"/>
+                            <Setter Property="FontSize" Value="10"/>
+                            <Setter Property="BorderBrush" Value="Black"/>
+                            <Setter Property="BorderThickness" Value="2,0, 2,2"/>
+                        </Style>
+                    </DataGrid.Resources>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding ResultId}" Header="Compt.Code" Width="80"/>
+                        <DataGridTextColumn Binding="{Binding Membername}" Header="Competitor" Width="90"/>
+                        <DataGridTextColumn Binding="{Binding Points}" Header="Points" Width="59"/>
+                        <DataGridTextColumn Binding="{Binding Class}" Header="Class" Width="68"/>
+                        <DataGridTextColumn Binding="{Binding Date}" Header="Date" Width="100"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </WrapPanel>
+        </Grid>
+        <Grid x:Name="GridMenu" Width="70" HorizontalAlignment="Left">
+            <Grid.Background>
+                <LinearGradientBrush StartPoint="0.1,0" EndPoint="0.9,1">
+                    <GradientStop Color="#FFD74F76" Offset="1" />
+                    <GradientStop Color="#FF475AE4" Offset="0" />
+                </LinearGradientBrush>
+            </Grid.Background>
+            <Grid.Effect>
+                <DropShadowEffect BlurRadius="2" ShadowDepth="1" Color="#FFAEAEAE"/>
+            </Grid.Effect>
+            <StackPanel>
+                <Grid Height="150" Background="#FFFDFCFC" RenderTransformOrigin="0.5,0.5">
+                    <Grid.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Grid.RenderTransform>
+                    <Button x:Name="ButtonOpenMenu" Height="60" Width="60" Margin="5" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF0E1382" Click="ButtonOpenMenu_Click">
+                        <materialDesign:PackIcon Kind="Menu" Width="28" Height="25" Foreground="#FF181586"/>
+                    </Button>
+                    <Button x:Name="ButtonCloseMenu" Visibility="Collapsed" Height="60" Width="60" Margin="5" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF31577E" Click="ButtonCloseMenu_Click">
+                        <materialDesign:PackIcon Kind="ArrowLeft" Width="25" Height="25"/>
+                    </Button>
+                    <Image Height="90" Source="C:\Users\Minela\source\repos\Projekat_WPF\Images\Slika2.png" VerticalAlignment="Bottom"/>
+                </Grid>
+                <ListView x:Name="ListViewMenu" Foreground="#FF181586" ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
+                    <ListViewItem x:Name="ItemRequest" Height="60" MouseDoubleClick="ItemRequest_MouseDoubleClick">
+                        <StackPanel Orientation="Horizontal" >
+                            <materialDesign:PackIcon Kind="Users" Height="28" Width="28" Margin="10"/>
+                            <TextBlock Text="Users"  VerticalAlignment="Center" Margin="20 10"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem x:Name="ItemReview" MouseDoubleClick="ItemReview_MouseDoubleClick" Background="White" Height="60">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="CalendarTask" Height="25" Width="25" Margin="10"/>
+                            <TextBlock Text="Review results" VerticalAlignment="Center" Margin="20 10"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem Height="60" MouseDoubleClick="ItemSchedule_MouseDoubleClick">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="TableChair" Height="25" Width="25" Margin="10"/>
+                            <TextBlock Text="Schedule bench" VerticalAlignment="Center"  Margin="20 10"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem Height="60" MouseDoubleClick="ItemsAccount_MouseDoubleClick">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="AccountGroup" Height="25" Width="25" Margin="10"/>
+                            <TextBlock Text="School/ Group" VerticalAlignment="Center"  Margin="20 10"/>
+                        </StackPanel>
+                    </ListViewItem>
+                </ListView>
+            </StackPanel>
+        </Grid>
+        <Frame x:Name="main"/>
+    </Grid>
+
+</Page>

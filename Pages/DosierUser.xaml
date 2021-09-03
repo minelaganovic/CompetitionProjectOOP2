@@ -1,0 +1,56 @@
+﻿<Page x:Class="Projekat_WPF.Pages.DosierUser"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Projekat_WPF.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="DosierUser" Background="White">
+    <Grid>
+        <Label Content="Update notes member!" FontSize="18" HorizontalAlignment="Center" Margin="224,10,187,0" VerticalAlignment="Top"
+               Width="193" RenderTransformOrigin="0.5,0.5"
+               FontWeight="Bold" Background="#FFFDFBFB" Height="29" Foreground="#DDF01414" FontFamily="Bernard MT Condensed"/>
+        <WrapPanel Orientation="Horizontal">
+            <TextBlock Text="Member name:"  Margin="30,105,0,85" Height="29" FontWeight="Bold" Foreground="#DDF01414"  Width="96"/>
+        </WrapPanel>
+        <WrapPanel>
+            <TextBox Margin="117, 105,0,0" HorizontalAlignment="Center" Name="txtMemberN" Height="24" Width="135"/>
+        </WrapPanel>
+        <StackPanel>
+            <Button Content="Search name" Click="Button_SearchName" HorizontalAlignment="Left" Margin="120,150,0,0" VerticalAlignment="Top" Width="135"
+                    Background="#FFDD274E" Height="38" RenderTransformOrigin="0.5,0.5"/>
+        </StackPanel>
+        <WrapPanel Orientation="Horizontal">
+            <TextBlock Text="Type a notes:" Margin="30,220,0,0" Height="29" FontWeight="Bold" Foreground="#DDF01414"  Width="82"/>
+        </WrapPanel>
+        <WrapPanel>
+            <TextBox Margin="117, 225,0,0" Name="txtNotes"  Height="55" Width="137" BorderBrush="#891B0606"
+                     Foreground="#FF140202" HorizontalAlignment="Center" BorderThickness="2" TextAlignment="Center" Padding="5,4,4,4"/>
+        </WrapPanel>
+        <StackPanel>
+            <Button Content="Update Notes" Click="Button_CreateNotes" HorizontalAlignment="Left" Margin="30,300,0,0" VerticalAlignment="Top" Width="225"
+                    Background="#FFDD274E" Height="38" RenderTransformOrigin="0.5,0.5"/>
+        </StackPanel>
+        <WrapPanel Margin="272,50,10,0" >
+            <DataGrid Name="DataGridTeam" Foreground="White" AutoGenerateColumns="False" ScrollViewer.CanContentScroll="True" Background="#FF5178D4" Margin="0,0,0,10" Height="333" >
+                <DataGrid.Resources>
+                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Background" Value="#FF434FCE"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                        <Setter Property="Padding" Value="10 5 5 5"/>
+                        <Setter Property="BorderBrush" Value="Black"/>
+                        <Setter Property="BorderThickness" Value="2,0, 2,2"/>
+                    </Style>
+                </DataGrid.Resources>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Teamname}" Width="100" Header="Teamname"/>
+                    <DataGridTextColumn Binding="{Binding NameOfSchool}" Width="120" Header="Schoolname"/>
+                    <DataGridTextColumn Binding="{Binding IdC}" Header="Member Id" Width="*"/>
+                    <DataGridTextColumn Binding="{Binding Class}" Header="Class" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </WrapPanel>
+    </Grid>
+</Page>
