@@ -1,1 +1,1 @@
-# PGCompetition
+# Project for Competition system!
